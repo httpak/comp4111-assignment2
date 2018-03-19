@@ -22,13 +22,13 @@ public class ViewController {
 			doc.append("_id", new ObjectId(_id));
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(new JSONObject().toString(), HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		JSONArray books = MongoDB.fetch(MongoDB.mongodb.getCollection("books").find().filter(doc));
 		if (books.length() != 0) {
 			return new ResponseEntity<>(books.get(0).toString(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(new JSONObject().toString(), HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 
