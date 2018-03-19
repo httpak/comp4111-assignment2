@@ -30,7 +30,7 @@ public class AddController {
 			if (books.length() == 0) {
 				doc.append("Available", true);
 				MongoDB.mongodb.getCollection("books").insertOne(doc);
-				return new ResponseEntity<>("Location: /books/" + doc.get("_id"), HttpStatus.CREATED);
+				return new ResponseEntity<>("Location: /BookManagementService/books/" + doc.get("_id"), HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>("Duplicate record: /BookManagementService/books/" + books.getJSONObject(0).get("_id"), HttpStatus.CONFLICT);
 			}
